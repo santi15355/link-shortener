@@ -1,0 +1,20 @@
+server:
+  port: ${PORT:80}
+spring:
+  liquibase:
+    enabled: false
+    change-log: classpath:db/changelog/changelog-master.yml
+  datasource:
+    url: jdbc:h2:file:./linkShortenerDB # в корне проект файл бд db.mv.db
+    username: sa # имя пользователя консоли
+    password:  # пароль консоли
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+      path: /h2console/
+
+
