@@ -4,6 +4,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.1.0'
     id 'application'
     id 'org.liquibase.gradle' version '2.0.4'
+    id 'war'
 }
 
 group = 'com.shortit4me'
@@ -91,6 +92,11 @@ liquibase {
                     '&hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy'
         }
     }
+}
+
+war {
+    baseName = 'ROOT'
+    archiveName 'ROOT.war'
 }
 
 tasks.named('test') {

@@ -1,0 +1,37 @@
+body {
+    background-image: url(img/back.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover
+}
+
+.neonText {
+  text-align: center;
+  animation: flicker 1.5s infinite alternate;
+  color: #fff;
+}
+
+@keyframes flicker {
+
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+
+      text-shadow:
+      0 0 4px #fff,
+      0 0 11px #fff,
+      0 0 19px #fff,
+      0 0 40px #0014a8,
+      0 0 80px #0014a8,
+      0 0 90px #0014a8,
+      0 0 100px #0014a8,
+      0 0 150px #0014a8;
+
+  }
+
+  20%, 24%, 55% {
+      text-shadow: none;
+  }
+}
+
+.container {
+  margin-top: 40vh;
+}

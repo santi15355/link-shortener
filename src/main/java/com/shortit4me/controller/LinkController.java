@@ -56,7 +56,7 @@ public class LinkController {
 
     @PostMapping
     @Transactional
-    public String addLinks(@RequestParam("link") String link, Model model) {
+    public ModelAndView addLinks(@RequestParam("link") String link, Model model) {
         LongLink longLink = new LongLink();
         longLink.setUserLink(link);
         longLinkService.saveNewLongLink(longLink);
@@ -64,15 +64,17 @@ public class LinkController {
         shortLink.setGeneratedLink(shortLinkGenerator.generateShortLink());
         shortLink.setId(longLink.getId());
         shortLinkRepository.save(shortLink);
-        //model.addAttribute("shortUrl", shortLink.getGeneratedLink());
-        return "redirect:/showShortUrl";
+        ModelAndView modelAndView = new ModelAndView("showShortUrl");
+        String urlToShow = "https://shortit4me.fun/" + shortLink.getGeneratedLink();
+        modelAndView.addObject("showUrl", urlToShow);
+        return modelAndView;
     }
 
     @GetMapping(SHORT_LINK)
-    public String getLongLink(@PathVariable final String shortLink) {
+    public RedirectView getLongLink(@PathVariable final String shortLink) {
 
         List<ShortLink> shortLinkList = shortLinkRepository.findAll();
-        val linkFromRepo = shortLinkRepository.findByGeneratedLink(shortLink).get().getId();
-        return String.valueOf(longLinkRepository.findById(String.valueOf(linkFromRepo)));
+        val id = shortLinkRepository.findByGeneratedLink(shortLink).get().getId();
+        return new RedirectView(longLinkRepository.findById(String.valueOf(id)).get().getUserLink()) ;
     }
 }

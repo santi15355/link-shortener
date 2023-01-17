@@ -1,5 +1,5 @@
 server:
-  port: ${PORT:8080}
+  port: ${PORT:80}
 spring:
   liquibase:
     enabled: false
@@ -10,11 +10,11 @@ spring:
     password:  # пароль консоли
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     database-platform: org.hibernate.dialect.H2Dialect
   h2:
     console:
       enabled: true
       path: /h2console/
-
-
+      settings:
+        web-allow-others: true

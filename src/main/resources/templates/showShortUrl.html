@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Short Url</title>
+    <title>Link Shortener</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/showShortLink.css">
 </head>
 <body>
-
-<p>redirected</p>
-
-
-
+<div class="container">
+    <h1 class="neonText" th:text="${showUrl}"></h1>
+</div>
 </body>
 </html>
