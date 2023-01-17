@@ -3,7 +3,7 @@ plugins {
     id 'org.springframework.boot' version '3.0.1'
     id 'io.spring.dependency-management' version '1.1.0'
     id 'application'
-    id 'org.liquibase.gradle' version '2.1.1'
+    id 'org.liquibase.gradle' version '2.0.4'
 }
 
 group = 'com.shortit4me'
@@ -68,7 +68,6 @@ dependencies {
 
     testImplementation(
             'org.springframework.boot:spring-boot-starter-test:3.0.1',
-            'org.springframework.boot:spring-boot-starter-test:3.0.1',
             'com.h2database:h2:2.1.214'
 
     )
@@ -84,7 +83,7 @@ liquibase {
     activities {
         main {
             changeLogFile 'src/main/resources/db/changelog/changelog-master.yml'
-            url 'jdbc:h2:file:./linkShortenerDB'
+            url 'jdbc:h2:./linkShortenerDB'
             username 'sa'
             password ''
             referenceUrl 'hibernate:spring:com.shortit4me.model.' +
