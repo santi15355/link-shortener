@@ -5,11 +5,9 @@ import org.springframework.stereotype.Component;
 import java.util.Random;
 @Component
 public class ShortLinkGenerator {
-
-    private final StringBuilder shortLinkBuilder = new StringBuilder();
-    private final Random random = new Random();
-
     public String generateShortLink() {
+        StringBuilder shortLinkBuilder = new StringBuilder();
+        Random random = new Random();
         return shortLinkBuilder
                 .append((char) (random.nextInt(26) + 'A'))
                 .append((char) (random.nextInt(26) + 'a'))

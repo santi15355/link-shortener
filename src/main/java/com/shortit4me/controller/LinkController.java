@@ -6,6 +6,7 @@ import com.shortit4me.repository.LongLinkRepository;
 import com.shortit4me.repository.ShortLinkRepository;
 import com.shortit4me.service.LongLinkService;
 import com.shortit4me.utils.ShortLinkGenerator;
+import lombok.AllArgsConstructor;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,18 +24,16 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/")
+@AllArgsConstructor
 public class LinkController {
 
     public static final String SHORT_LINK = "{shortLink}";
-    @Autowired
-    private ShortLinkGenerator shortLinkGenerator;
-    @Autowired
-    private LongLinkService longLinkService;
-    @Autowired
-    private LongLinkRepository longLinkRepository;
 
-    @Autowired
-    private ShortLinkRepository shortLinkRepository;
+    private final ShortLinkGenerator shortLinkGenerator;
+    private final LongLinkService longLinkService;
+
+    private final LongLinkRepository longLinkRepository;
+    private final ShortLinkRepository shortLinkRepository;
 
     @GetMapping
     public ModelAndView showHome() {
@@ -75,6 +74,6 @@ public class LinkController {
 
         List<ShortLink> shortLinkList = shortLinkRepository.findAll();
         val id = shortLinkRepository.findByGeneratedLink(shortLink).get().getId();
-        return new RedirectView(longLinkRepository.findById(String.valueOf(id)).get().getUserLink()) ;
+        return new RedirectView(longLinkRepository.findById(String.valueOf(id)).get().getUserLink());
     }
 }
