@@ -28,6 +28,7 @@ import java.util.List;
 public class LinkController {
 
     public static final String SHORT_LINK = "{shortLink}";
+    public static final String BASE_URL = "https://shortit4me.fun/";
 
     private final ShortLinkGenerator shortLinkGenerator;
     private final LongLinkService longLinkService;
@@ -40,22 +41,9 @@ public class LinkController {
         return new ModelAndView("home");
     }
 
-    /*@PostMapping
-    @Transactional
-    public String addLinks(@RequestParam("link") String link, Model model) {
-        LongLink longLink = new LongLink();
-        longLink.setUserLink(link);
-        longLinkService.saveNewLongLink(longLink);
-        ShortLink shortLink = new ShortLink();
-        shortLink.setGeneratedLink(shortLinkGenerator.generateShortLink());
-        shortLink.setId(longLink.getId());
-        shortLinkRepository.save(shortLink);
-        return "redirect:/";
-    }*/
-
     @PostMapping
     @Transactional
-    public ModelAndView addLinks(@RequestParam("link") String link, Model model) {
+    public ModelAndView addLinks(@RequestParam("link") String link) {
         LongLink longLink = new LongLink();
         longLink.setUserLink(link);
         longLinkService.saveNewLongLink(longLink);
@@ -64,7 +52,7 @@ public class LinkController {
         shortLink.setId(longLink.getId());
         shortLinkRepository.save(shortLink);
         ModelAndView modelAndView = new ModelAndView("showShortUrl");
-        String urlToShow = "https://shortit4me.fun/" + shortLink.getGeneratedLink();
+        String urlToShow = BASE_URL + shortLink.getGeneratedLink();
         modelAndView.addObject("showUrl", urlToShow);
         return modelAndView;
     }

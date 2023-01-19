@@ -9,6 +9,17 @@ body {
   text-align: center;
   animation: flicker 1.5s infinite alternate;
   color: #fff;
+  margin: 0 auto;
+
+  border-style: none;
+  	outline: none;
+  	border-radius: 25px;
+  	width: 600px;
+  	padding: 20px;
+  	box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+  	background-image: linear-gradient(315deg, #000000 0%, 8000ff 74%);
+  	box-shadow: inset 0px 0px 81px 17px #000000, 0px 0px 20px 4px #0000FF;
+  	color: white;
 }
 
 @keyframes flicker {
@@ -34,4 +45,43 @@ body {
 
 .container {
   margin-top: 40vh;
+}
+
+.nav {
+margin-top: 5vh;
+margin-left: 30vw;
+}
+
+.neon {
+color: #ff14bd;
+border: .4rem solid #ff14bd;
+border-radius: 1rem;
+background: transparent;
+font-size: 3rem;
+padding: .8rem;
+font-family: 'Comfortaa', cursive;
+position: relative;
+cursor: pointer;
+box-shadow: inset 0 0 0.5em 0 #ff14bd, 0 0 0.5em 0 #ff14bd;
+}
+
+.neon:before {
+content: '';
+position: absolute;
+background: #ff14bd;
+box-sizing: border-box;
+width: 100%;
+height: 100%;
+transform: perspective(1em) rotateX(40deg) scale(1, 0.3);
+filter: blur(1em);bottom: -2em;opacity: 0.7;
+}
+
+.neon:hover:before {
+opacity: 1;
+}
+
+.neon:hover {
+background: #ff14bd;
+color: #fff;
+box-shadow: 0 0 2em 0.5em #ff14bd;
 }
