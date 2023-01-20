@@ -5,6 +5,10 @@ body {
     background-size: cover
 }
 
+.main {
+    margin: 0 auto;
+}
+
 .link {
 	font-family: 'Comfortaa', cursive;
 	position: absolute;

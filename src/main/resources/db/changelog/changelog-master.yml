@@ -1,0 +1,40 @@
+databaseChangeLog:
+- changeSet:
+    id: 1674173067880-1
+    author: xonfee (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: longLinksPK
+            name: id
+            type: BIGINT
+        - column:
+            name: createdAt
+            type: TIMESTAMP(6) WITHOUT TIME ZONE
+        - column:
+            name: userLink
+            type: VARCHAR(255)
+        tableName: longLinks
+- changeSet:
+    id: 1674173067880-2
+    author: xonfee (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: shortLinksPK
+            name: id
+            type: BIGINT
+        - column:
+            name: generatedLink
+            type: VARCHAR(255)
+        tableName: shortLinks
+
