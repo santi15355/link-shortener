@@ -1,26 +1,33 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Link Shortener</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="static/css/showShortLink.css">
+    <meta name="viewpoint" content="width=device-width">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="static/css/showShortLink.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 </head>
 <body>
-<script type="text/javascript">
-        function myFunction() {
-  var copyText = document.getElementById("${showUrl}");
-  copyText.select();
-  copyText.setSelectionRange(0, 99999);
-  navigator.clipboard.writeText(copyText.value);
-  alert("Copied the text: " + copyText.value);
+<script>
+        function copyToClipboard(element) {
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).text()).select();
+    document.execCommand("copy");
+    $temp.remove();
 }
+
 </script>
-<div class="container"></div>
-    <h1 class="neonText" th:text="${showUrl}" id="${showUrl}">паываывап</h1>
-<div class="btn">
-        <button class="neon" onclick="myFunction()">скопировать</button>
-        <a href='/'><button class="neon">на  главную</button></a>
+
+<div class="container">
+    <h1 class="neonText" th:text="${showUrl}" id="copyLink"></h1>
+    <div class="btn">
+        <button class="neon" onclick="copyToClipboard('#copyLink')">скопировать</button>
+        <a href="/">
+            <button class="neon">на  главную</button>
+        </a>
+    </div>
 </div>
 </body>
 </html>

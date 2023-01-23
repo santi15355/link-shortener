@@ -5,6 +5,13 @@ plugins {
     id 'application'
     id 'org.liquibase.gradle' version '2.0.4'
     id 'war'
+    id 'jacoco'
+    id 'checkstyle'
+
+}
+
+checkstyle {
+    toolVersion '10.6.0'
 }
 
 group = 'com.shortit4me'
@@ -51,7 +58,9 @@ dependencies {
             'org.springframework.boot:spring-boot-starter-web',
             'javax.persistence:persistence-api:1.0.2',
             'org.liquibase:liquibase-core:4.19.0',
-            'org.projectlombok:lombok:1.18.24'
+            'org.projectlombok:lombok:1.18.24',
+            'org.hibernate.validator:hibernate-validator:8.0.0.Final',
+            'commons-validator:commons-validator:1.7'
     )
 
     liquibaseRuntime(
@@ -64,7 +73,7 @@ dependencies {
             'org.liquibase:liquibase-groovy-dsl:3.0.2'
     )
 
-    runtimeOnly (
+    runtimeOnly(
             'org.postgresql:postgresql:42.5.1'
 
     )
@@ -83,7 +92,7 @@ liquibase {
     activities {
         main {
             changeLogFile 'src/main/resources/db/changelog/changelog-master.yml'
-            url 'jdbc:postgresql://localhost:5432/test'
+            url 'jdbc:postgresql://localhost:5432/link'
             username 'postgres'
             password '555555'
             classpath 'src/main/resources/postgresql-42.5.1.jar'
@@ -94,11 +103,36 @@ liquibase {
     }
 }
 
+jacoco {
+    toolVersion = "0.8.8"
+}
+
 war {
     baseName = 'ROOT'
     archiveName 'ROOT.war'
 }
 
-tasks.named('test') {
+test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        html.outputLocation = layout.buildDirectory.dir('jacoco')
+    }
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            includes = ['com/shortit4me/*']
+            excludes = ['org.postgresql/**']
+            limit {
+                minimum = 0.85
+            }
+        }
+    }
 }

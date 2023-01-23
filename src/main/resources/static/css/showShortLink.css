@@ -1,87 +1,93 @@
 body {
-    background-image: url(img/back.jpg);
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover
+  background-image: url(img/back.jpg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .neonText {
-  text-align: center;
   animation: flicker 1.5s infinite alternate;
+  text-align: center;
+  font-family: "Comfortaa", cursive;
+  position: relative;
   color: #fff;
-  margin: 0 auto;
-
   border-style: none;
-  	outline: none;
-  	border-radius: 25px;
-  	width: 600px;
-  	padding: 20px;
-  	box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
-  	background-image: linear-gradient(315deg, #000000 0%, 8000ff 74%);
-  	box-shadow: inset 0px 0px 81px 17px #000000, 0px 0px 20px 4px #0000FF;
-  	color: white;
+  outline: none;
+  border-radius: 10px;
+  max-width: 650px;
+  height: 50px;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+  background: transparent;
+  box-shadow: inset 0px 0px 81px 17px #000000, 0px 0px 20px 4px #0000ff;
+  color: white;
+  margin: 0 auto;
 }
 
 @keyframes flicker {
-
-  0%, 18%, 22%, 25%, 53%, 57%, 100% {
-
-      text-shadow:
-      0 0 4px #fff,
-      0 0 11px #fff,
-      0 0 19px #fff,
-      0 0 40px #0014a8,
-      0 0 80px #0014a8,
-      0 0 90px #0014a8,
-      0 0 100px #0014a8,
-      0 0 150px #0014a8;
-
+  0%,
+  18%,
+  22%,
+  25%,
+  53%,
+  57%,
+  100% {
+    text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px #0014a8, 0 0 80px #0014a8, 0 0 90px #0014a8, 0 0 100px #0014a8, 0 0 150px #0014a8;
   }
 
-  20%, 24%, 55% {
-      text-shadow: none;
+  20%,
+  24%,
+  55% {
+    text-shadow: none;
   }
 }
 
 .container {
-  margin-top: 40vh;
+position: absolute;
+    top:  40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: 0 auto;
+}
+
+
+.neon {
+  color: #1E90FF;
+  border: 0.4rem solid #1E90FF;
+  border-radius: 1rem;
+  background: transparent;
+  font-size: 3rem;
+  padding: 0.8rem;
+  font-family: "Comfortaa", cursive;
+  position: relative;
+  cursor: pointer;
+  box-shadow: inset 0 0 0.5em 0 #4b0082, 0 0 0.5em 0 #4b0082;
 }
 
 .btn {
-margin-left: 65vh;
-margin-top: 5vh;
-}
-
-.neon {
-color: #ff14bd;
-border: .4rem solid #ff14bd;
-border-radius: 1rem;
-background: transparent;
-font-size: 3rem;
-padding: .8rem;
-font-family: 'Comfortaa', cursive;
-position: relative;
-cursor: pointer;
-box-shadow: inset 0 0 0.5em 0 #ff14bd, 0 0 0.5em 0 #ff14bd;
+  position: absolute;
+    top:  15vh;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 
 .neon:before {
-content: '';
-position: absolute;
-background: #ff14bd;
-box-sizing: border-box;
-width: 100%;
-height: 100%;
-transform: perspective(1em) rotateX(40deg) scale(1, 0.3);
-filter: blur(1em);bottom: -2em;opacity: 0.7;
+  content: "";
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  transform: perspective(1em) rotateX(40deg) scale(1, 0.3);
+  filter: blur(1em);
+  bottom: -2em;
+  opacity: 0.7;
 }
 
 .neon:hover:before {
-opacity: 1;
+  opacity: 1;
 }
 
 .neon:hover {
-background: #ff14bd;
-color: #fff;
-box-shadow: 0 0 2em 0.5em #ff14bd;
+  background: #0000FF;
+  color: #fff;
+  box-shadow: 0 0 2em 0.5em #0000FF;
 }
