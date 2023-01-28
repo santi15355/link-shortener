@@ -72,7 +72,8 @@ dependencies {
     )
 
     runtimeOnly(
-            'org.postgresql:postgresql:42.5.1'
+            'org.postgresql:postgresql:42.5.1',
+            'com.h2database:h2:2.1.214'
 
     )
 

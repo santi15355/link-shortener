@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 @Profile(SpringConfigForIT.TEST_PROFILE)
 @EnableAspectJAutoProxy
-@ComponentScan(basePackages = "com.shortit4me")
+@ComponentScan(basePackages = "fun.cut4me")
 @PropertySource(value = "classpath:/config/application.yml")
 public class SpringConfigForIT {
 
