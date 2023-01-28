@@ -1,4 +1,4 @@
-package com.shortit4me.config;
+package fun.cut4me.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

@@ -1,19 +1,14 @@
-package com.shortit4me.controller;
+package fun.cut4me.controller;
 
-import com.shortit4me.model.LongLink;
-import com.shortit4me.model.ShortLink;
-import com.shortit4me.repository.LongLinkRepository;
-import com.shortit4me.repository.ShortLinkRepository;
-import com.shortit4me.service.LongLinkService;
-import com.shortit4me.utils.ShortLinkGenerator;
-import com.shortit4me.utils.UrlChecker;
+import fun.cut4me.model.LongLink;
+import fun.cut4me.model.ShortLink;
+import fun.cut4me.repository.LongLinkRepository;
+import fun.cut4me.repository.ShortLinkRepository;
+import fun.cut4me.service.LongLinkService;
+import fun.cut4me.utils.ShortLinkGenerator;
+import fun.cut4me.utils.UrlChecker;
 import lombok.AllArgsConstructor;
 import lombok.val;
-import org.hibernate.Session;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

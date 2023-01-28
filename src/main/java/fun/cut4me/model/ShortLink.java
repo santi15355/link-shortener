@@ -1,4 +1,4 @@
-package com.shortit4me.model;
+package fun.cut4me.model;
 
 
 import jakarta.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.shortit4me.utils;
+package fun.cut4me.utils;
 
 import org.springframework.stereotype.Component;
 

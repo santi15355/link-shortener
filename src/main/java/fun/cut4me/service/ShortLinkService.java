@@ -1,6 +1,6 @@
-package com.shortit4me.service;
+package fun.cut4me.service;
 
-import com.shortit4me.model.ShortLink;
+import fun.cut4me.model.ShortLink;
 
 public interface ShortLinkService {
 

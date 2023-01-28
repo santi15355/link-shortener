@@ -1,7 +1,7 @@
-package com.shortit4me.service;
+package fun.cut4me.service;
 
-import com.shortit4me.model.LongLink;
-import com.shortit4me.repository.LongLinkRepository;
+import fun.cut4me.model.LongLink;
+import fun.cut4me.repository.LongLinkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

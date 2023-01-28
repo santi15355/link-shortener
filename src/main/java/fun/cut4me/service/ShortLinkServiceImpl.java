@@ -1,7 +1,7 @@
-package com.shortit4me.service;
+package fun.cut4me.service;
 
-import com.shortit4me.model.ShortLink;
-import com.shortit4me.repository.ShortLinkRepository;
+import fun.cut4me.model.ShortLink;
+import fun.cut4me.repository.ShortLinkRepository;
 import org.springframework.stereotype.Service;
 
 @Service

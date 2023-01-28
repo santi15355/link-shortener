@@ -1,6 +1,6 @@
-package com.shortit4me.repository;
+package fun.cut4me.repository;
 
-import com.shortit4me.model.ShortLink;
+import fun.cut4me.model.ShortLink;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

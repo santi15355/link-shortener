@@ -3,15 +3,10 @@ spring:
     enabled: true
     change-log: classpath:db/changelog/changelog-master.yml
   datasource:
-    url: jdbc:postgresql://localhost:5432/test
+    url: jdbc:postgresql://localhost:5432/testDB
     username: postgres
     password: 555555
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-
-  mvc:
-    hiddenmethod:
-      filter:
-        enabled: true

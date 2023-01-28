@@ -1,6 +1,6 @@
 databaseChangeLog:
 - changeSet:
-    id: 1674173067880-1
+    id: 1674934728598-1
     author: xonfee (generated)
     changes:
     - createTable:
@@ -18,10 +18,10 @@ databaseChangeLog:
             type: TIMESTAMP(6) WITHOUT TIME ZONE
         - column:
             name: userLink
-            type: VARCHAR(255)
+            type: OID
         tableName: longLinks
 - changeSet:
-    id: 1674173067880-2
+    id: 1674934728598-2
     author: xonfee (generated)
     changes:
     - createTable:
