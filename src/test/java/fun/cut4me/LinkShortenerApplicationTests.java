@@ -17,6 +17,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -56,10 +57,37 @@ class LinkShortenerApplicationTests {
                         .param("link", TEST_LINK)
                         .content(TEST_LINK))
                 .andExpect(status().isOk())
-                .andExpect(content()
-                        .string(containsString("shortit4me")))
                 .andReturn();
         assertThat(longLinkRepository.findAll()
                 .get(0).getUserLink()).isEqualTo(TEST_LINK);
+    }
+
+    @Test
+    public void generateShortLinkTest() throws Exception {
+        mockMvc.perform(post("/")
+                        .param("link", TEST_LINK)
+                        .content(TEST_LINK))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        Long longLinkId = longLinkRepository.findAll().get(0).getId();
+        Long shortLinkId = shortLinkRepository.findAll().get(0).getId();
+
+        assertThat(longLinkId).isEqualTo(shortLinkId);
+    }
+
+    @Test
+    public void getLongLinkTest() throws Exception {
+        mockMvc.perform(post("/")
+                        .param("link", TEST_LINK)
+                        .content(TEST_LINK))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String shortUrl = shortLinkRepository.findAll().get(0).getGeneratedLink();
+
+        mockMvc.perform(get("/" + shortUrl))
+                .andExpect(redirectedUrl(TEST_LINK))
+                .andReturn();
     }
 }

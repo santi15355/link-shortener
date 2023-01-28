@@ -28,7 +28,7 @@ import java.util.List;
 public class LinkController {
 
     public static final String SHORT_LINK = "{shortLink}";
-    public static final String BASE_URL = "https://shortit4me.fun/";
+    public static final String BASE_URL = "http://localhost/";
 
     private final UrlChecker urlChecker;
 
