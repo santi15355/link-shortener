@@ -1,5 +1,4 @@
 name: build
-run: chmod +x ./gradlew
 on:
   - push
 jobs:
