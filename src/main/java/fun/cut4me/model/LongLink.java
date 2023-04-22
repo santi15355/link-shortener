@@ -38,6 +38,4 @@ public class LongLink {
     @CreationTimestamp
     @Temporal(TIMESTAMP)
     private Date createdAt;
-
-
 }
