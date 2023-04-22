@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
@@ -25,16 +24,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/")
 @AllArgsConstructor
-public class LinkController {
+public class LinksController {
 
     public static final String SHORT_LINK = "{shortLink}";
     public static final String BASE_URL = "https://cut4me.fun/";
-
     private final UrlChecker urlChecker;
-
     private final ShortLinkGenerator shortLinkGenerator;
     private final LongLinkService longLinkService;
-
     private final LongLinkRepository longLinkRepository;
     private final ShortLinkRepository shortLinkRepository;
 
@@ -45,7 +41,7 @@ public class LinkController {
 
     @PostMapping
     @Transactional
-    public ModelAndView addLinks(@RequestParam("link") String link, final RedirectAttributes redirectAttributes) {
+    public ModelAndView addLinks(@RequestParam("link") String link) {
 
         ModelAndView home = new ModelAndView("home");
 
@@ -74,5 +70,14 @@ public class LinkController {
         List<ShortLink> shortLinkList = shortLinkRepository.findAll();
         val id = shortLinkRepository.findByGeneratedLink(shortLink).get().getId();
         return new RedirectView(longLinkRepository.findById(String.valueOf(id)).get().getUserLink());
+    }
+
+    @GetMapping("/show")
+    public ModelAndView root() {
+
+        ModelAndView showUrl = new ModelAndView("showAll");
+        List<LongLink> longLinks = longLinkRepository.findAll().stream().toList();
+        showUrl.addObject("links", longLinks);
+        return showUrl;
     }
 }

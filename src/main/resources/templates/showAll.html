@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Все ссылки</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous"/>
+</head>
+<body>
+<div class="container">
+    <h3>Всего ссылок: </h3> <h3 th:text="${links.size()}"></h3>
+    <hr/>
+    <table class="table table-bordered table-striped">
+
+        <thead>
+        <tr>
+            <th>URL</th>
+            <th>Created At</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="url : ${links}">
+            <td th:text="${url.getUserLink}"></td>
+            <td th:text="${url.getCreatedAt}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

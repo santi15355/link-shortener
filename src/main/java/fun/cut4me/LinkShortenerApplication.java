@@ -1,6 +1,6 @@
 package fun.cut4me;
 
-import fun.cut4me.controller.LinkController;
+import fun.cut4me.controller.LinksController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -22,6 +22,6 @@ public class LinkShortenerApplication extends SpringBootServletInitializer {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(LinkController.class, args);
+        SpringApplication.run(LinksController.class, args);
     }
 }
