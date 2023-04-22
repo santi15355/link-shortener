@@ -73,8 +73,7 @@ public class LinksController {
     }
 
     @GetMapping("/show")
-    public ModelAndView root() {
-
+    public ModelAndView showAllUrls() {
         ModelAndView showUrl = new ModelAndView("showAll");
         List<LongLink> longLinks = longLinkRepository.findAll().stream().toList();
         showUrl.addObject("links", longLinks);
