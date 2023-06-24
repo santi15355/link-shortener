@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UrlChecker {
-
     public boolean checkUrl(String url) {
         String[] schemes = {"http", "https", "ftp"};
         UrlValidator urlValidator = new UrlValidator(schemes);
