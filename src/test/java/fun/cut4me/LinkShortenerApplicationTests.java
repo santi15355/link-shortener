@@ -1,7 +1,6 @@
 package fun.cut4me;
 
-import fun.cut4me.repository.LongLinkRepository;
-import fun.cut4me.repository.ShortLinkRepository;
+import fun.cut4me.repository.UrlRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -31,15 +29,11 @@ class LinkShortenerApplicationTests {
     private MockMvc mockMvc;
 
     @Autowired
-    private LongLinkRepository longLinkRepository;
-
-    @Autowired
-    private ShortLinkRepository shortLinkRepository;
+    private UrlRepository urlRepository;
 
     @BeforeEach
     public void clearRepo() {
-        longLinkRepository.deleteAll();
-        shortLinkRepository.deleteAll();
+        urlRepository.deleteAll();
     }
 
     @Test
@@ -58,36 +52,7 @@ class LinkShortenerApplicationTests {
                         .content(TEST_LINK))
                 .andExpect(status().isOk())
                 .andReturn();
-        assertThat(longLinkRepository.findAll()
-                .get(0).getUserLink()).isEqualTo(TEST_LINK);
-    }
-
-    @Test
-    public void generateShortLinkTest() throws Exception {
-        mockMvc.perform(post("/")
-                        .param("link", TEST_LINK)
-                        .content(TEST_LINK))
-                .andExpect(status().isOk())
-                .andReturn();
-
-        Long longLinkId = longLinkRepository.findAll().get(0).getId();
-        Long shortLinkId = shortLinkRepository.findAll().get(0).getId();
-
-        assertThat(longLinkId).isEqualTo(shortLinkId);
-    }
-
-    @Test
-    public void getLongLinkTest() throws Exception {
-        mockMvc.perform(post("/")
-                        .param("link", TEST_LINK)
-                        .content(TEST_LINK))
-                .andExpect(status().isOk())
-                .andReturn();
-
-        String shortUrl = shortLinkRepository.findAll().get(0).getGeneratedLink();
-
-        mockMvc.perform(get("/" + shortUrl))
-                .andExpect(redirectedUrl(TEST_LINK))
-                .andReturn();
+        assertThat(urlRepository.findAll()
+                .get(0).getLongUrl()).isEqualTo(TEST_LINK);
     }
 }

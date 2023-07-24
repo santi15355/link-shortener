@@ -2,6 +2,8 @@ HELP.md
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
+src/main/resources/ssl/jks_cut4me
+src/main/resources/config/application.yml
 !**/src/main/**/build/
 !**/src/test/**/build/
 

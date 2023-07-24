@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Random;
 @Component
-public class ShortLinkGenerator {
+public class ShortUrlGenerator {
     public String generateShortLink() {
         StringBuilder shortLinkBuilder = new StringBuilder();
         Random random = new Random();
@@ -16,5 +16,4 @@ public class ShortLinkGenerator {
                 .append((char) (random.nextInt(26) + 'a'))
                 .toString();
     }
-
 }
