@@ -6,6 +6,8 @@ import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class UrlServiceImpl implements UrlService {
@@ -28,6 +30,11 @@ public class UrlServiceImpl implements UrlService {
 
         }
         return shortUrl;
+    }
+
+    @Override
+    public List<Url> showAllUrls() {
+        return urlRepository.findAll().stream().toList();
     }
 
 }

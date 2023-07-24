@@ -72,7 +72,7 @@ public class UrlController {
     @GetMapping("/show")
     public ModelAndView showAllUrls() {
         ModelAndView showUrls = new ModelAndView("showAll");
-        List<Url> urls = urlRepository.findAll().stream().toList();
+        List<Url> urls = urlService.showAllUrls();
         showUrls.addObject("links", urls);
         return showUrls;
     }
