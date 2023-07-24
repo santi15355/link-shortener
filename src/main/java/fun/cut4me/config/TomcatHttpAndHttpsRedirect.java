@@ -32,7 +32,7 @@ public class TomcatHttpAndHttpsRedirect {
         Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
         connector.setScheme("http");
         connector.setPort(80);
-        connector.setSecure(true);
+        connector.setSecure(false);
         connector.setRedirectPort(443);
         return connector;
     }
