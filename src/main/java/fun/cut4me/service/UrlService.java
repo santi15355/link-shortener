@@ -9,4 +9,6 @@ public interface UrlService {
     String findLongLink(String shortLink);
 
     List<Url> showAllUrls();
+
+    List<Url> getAllUrlsForCache();
 }
