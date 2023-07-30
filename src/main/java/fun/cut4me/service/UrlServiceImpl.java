@@ -2,7 +2,6 @@ package fun.cut4me.service;
 
 import fun.cut4me.model.Url;
 import fun.cut4me.repository.UrlRepository;
-import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +31,6 @@ public class UrlServiceImpl implements UrlService {
     }
 
     @Override
-    @SneakyThrows
-    @Cacheable(cacheNames = "urls")
     public String findLongLink(String shortLink) {
         try {
             shortUrl = urlRepository.findLongUrlByShortUrl(shortLink).get().getLongUrl();
@@ -43,16 +40,9 @@ public class UrlServiceImpl implements UrlService {
         LOGGER.info("Long url found!");
         return shortUrl;
     }
-
     @Override
     @CachePut(cacheNames = "urls")
     public List<Url> showAllUrls() {
         return urlRepository.findAll().stream().toList();
-    }
-
-    @Override
-    @CachePut(cacheNames = "urls")
-    public List<Url> getAllUrlsForCache() {
-        return urlRepository.findAll();
     }
 }

@@ -10,5 +10,4 @@ public interface UrlService {
 
     List<Url> showAllUrls();
 
-    List<Url> getAllUrlsForCache();
 }

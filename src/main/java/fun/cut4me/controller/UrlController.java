@@ -6,17 +6,18 @@ import fun.cut4me.service.UrlService;
 import fun.cut4me.utils.ShortUrlGenerator;
 import fun.cut4me.utils.UrlChecker;
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -25,8 +26,10 @@ import java.util.List;
 @AllArgsConstructor
 public class UrlController {
 
-    public static final String SHORT_LINK = "{shortLink}";
-    public static final String BASE_URL = "https://cut4me.fun/";
+    private static final Logger LOGGER = LoggerFactory.getLogger("Url controller");
+
+    public static final String SHORT_LINK = "/{shortLink}";
+    public static final String BASE_URL = "https://cutit4me.ru/";
     private final UrlChecker urlChecker;
     private final ShortUrlGenerator shortUrlGenerator;
 
@@ -37,6 +40,7 @@ public class UrlController {
 
     @GetMapping
     public ModelAndView showHome() {
+        LOGGER.info("Main page opened");
         return new ModelAndView("home");
     }
 
@@ -48,6 +52,7 @@ public class UrlController {
 
         if (!urlChecker.checkUrl(link)) {
             home.addObject("message", "Некорректный УРЛ");
+            LOGGER.info("Wrong URL " + link);
             return home;
 
         } else {
@@ -59,14 +64,15 @@ public class UrlController {
             ModelAndView shortUrlPage = new ModelAndView("showShortUrl");
             String urlToShow = BASE_URL + shortLink;
             shortUrlPage.addObject("showUrl", urlToShow);
+            LOGGER.info("URLs successfully added in DB");
             return shortUrlPage;
         }
     }
 
-    @GetMapping(SHORT_LINK)
-    @SneakyThrows
-    public RedirectView getLongLink(@PathVariable final String shortLink) {
-        return new RedirectView(urlService.findLongLink(shortLink));
+    @RequestMapping(value = SHORT_LINK, method = RequestMethod.GET)
+    public ModelAndView getLongLink(@PathVariable final String shortLink) {
+        LOGGER.info("Long URL successfully found!");
+        return new ModelAndView("redirect:" + urlService.findLongLink(shortLink));
     }
 
     @GetMapping("/show")
