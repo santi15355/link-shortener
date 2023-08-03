@@ -1,7 +1,6 @@
 package fun.cut4me.controller;
 
 import fun.cut4me.model.Url;
-import fun.cut4me.repository.UrlRepository;
 import fun.cut4me.service.UrlService;
 import fun.cut4me.utils.ShortUrlGenerator;
 import fun.cut4me.utils.UrlChecker;
@@ -33,8 +32,6 @@ public class UrlController {
     private final UrlChecker urlChecker;
     private final ShortUrlGenerator shortUrlGenerator;
 
-    @Autowired
-    private final UrlRepository urlRepository;
     @Autowired
     private final UrlService urlService;
 
