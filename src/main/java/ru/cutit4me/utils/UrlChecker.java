@@ -1,6 +1,7 @@
-package fun.cut4me.utils;
+package ru.cutit4me.utils;
 
 
+import lombok.SneakyThrows;
 import org.apache.commons.validator.routines.RegexValidator;
 import org.apache.commons.validator.routines.UrlValidator;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,7 @@ import static org.apache.commons.validator.routines.UrlValidator.ALLOW_LOCAL_URL
 
 @Component
 public class UrlChecker {
+    @SneakyThrows
     public boolean checkUrl(String url) {
         String regex = "[a-zA-Z0-9%-._~!$&'()*+,;=а-яА-Я]";
         RegexValidator regexValidator = new RegexValidator(regex);

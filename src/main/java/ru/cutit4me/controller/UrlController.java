@@ -1,10 +1,12 @@
-package fun.cut4me.controller;
+package ru.cutit4me.controller;
 
-import fun.cut4me.model.Url;
-import fun.cut4me.service.UrlService;
-import fun.cut4me.utils.ShortUrlGenerator;
-import fun.cut4me.utils.UrlChecker;
+import ru.cutit4me.model.Url;
+import ru.cutit4me.service.UrlService;
+import ru.cutit4me.utils.ShortUrlGenerator;
+import ru.cutit4me.utils.UrlChecker;
+import ru.cutit4me.utils.UrlEncoder;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +26,13 @@ import java.util.List;
 @RequestMapping("/")
 @AllArgsConstructor
 public class UrlController {
-
     private static final Logger LOGGER = LoggerFactory.getLogger("Url controller");
 
     public static final String SHORT_LINK = "/{shortLink}";
     public static final String BASE_URL = "https://cutit4me.ru/";
     private final UrlChecker urlChecker;
     private final ShortUrlGenerator shortUrlGenerator;
+    private final UrlEncoder urlEncoder;
 
     @Autowired
     private final UrlService urlService;
@@ -43,6 +45,7 @@ public class UrlController {
 
     @PostMapping
     @Transactional
+    @SneakyThrows
     public ModelAndView addLinks(@RequestParam("link") String link) {
 
         ModelAndView home = new ModelAndView("home");
@@ -69,7 +72,7 @@ public class UrlController {
     @RequestMapping(value = SHORT_LINK, method = RequestMethod.GET)
     public ModelAndView getLongLink(@PathVariable final String shortLink) {
         LOGGER.info("Long URL successfully found!");
-        return new ModelAndView("redirect:" + urlService.findLongLink(shortLink));
+        return new ModelAndView("redirect:" + UrlEncoder.encodeUrl(urlService.findLongLink(shortLink)));
     }
 
     @GetMapping("/show")

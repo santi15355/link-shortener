@@ -1,4 +1,4 @@
-package fun.cut4me.model;
+package ru.cutit4me.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

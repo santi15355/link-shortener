@@ -1,4 +1,4 @@
-package fun.cut4me.config;
+package ru.cutit4me.config;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;

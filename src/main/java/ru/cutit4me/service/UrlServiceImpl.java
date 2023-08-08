@@ -1,7 +1,7 @@
-package fun.cut4me.service;
+package ru.cutit4me.service;
 
-import fun.cut4me.model.Url;
-import fun.cut4me.repository.UrlRepository;
+import ru.cutit4me.model.Url;
+import ru.cutit4me.repository.UrlRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

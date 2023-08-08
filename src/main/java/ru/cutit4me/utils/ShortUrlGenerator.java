@@ -1,4 +1,4 @@
-package fun.cut4me.utils;
+package ru.cutit4me.utils;
 
 import org.springframework.stereotype.Component;
 

@@ -1,6 +1,6 @@
-package fun.cut4me.service;
+package ru.cutit4me.service;
 
-import fun.cut4me.model.Url;
+import ru.cutit4me.model.Url;
 
 import java.util.List;
 

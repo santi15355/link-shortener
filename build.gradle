@@ -12,7 +12,7 @@ checkstyle {
     toolVersion '10.6.0'
 }
 
-group = 'fun.cut4me'
+group = 'ru.cutit4me'
 version = '1.1'
 sourceCompatibility = '17'
 
@@ -22,7 +22,7 @@ compileJava {
 }
 
 wrapper {
-    gradleVersion = '7.6'
+    gradleVersion = '8.2.1'
     distributionType = Wrapper.DistributionType.ALL
 }
 
@@ -54,8 +54,9 @@ dependencies {
             'org.springframework.boot:spring-boot-starter-websocket:3.0.4',
             'org.springframework.boot:spring-boot-starter-tomcat:3.1.0',
             'org.springframework.boot:spring-boot-starter-cache:3.1.0',
-            'org.slf4j:slf4j-log4j12:1.7.30'
+            'org.slf4j:slf4j-log4j12:2.0.5'
     )
+
 
     runtimeOnly(
             'org.postgresql:postgresql:42.5.4',
@@ -68,8 +69,17 @@ dependencies {
     )
 }
 
+configurations.configureEach {
+    exclude module: 'slf4j-log4j12'
+}
+
 jacoco {
     toolVersion = "0.8.8"
+}
+
+compileJava {
+    options.release = 17
+    options.encoding = 'UTF-8'
 }
 
 test {
